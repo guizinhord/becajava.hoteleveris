@@ -1,16 +1,6 @@
-package br.hoteleveris.app.model;
+package br.hoteleveris.app.response;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-import br.hoteleveris.app.response.BaseResponse;
-
-@Entity
-public class TipoQuarto extends BaseResponse {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class TipoQuartoResponse {
 	private Long id;
 	private String descricao;
 	private Double valor;

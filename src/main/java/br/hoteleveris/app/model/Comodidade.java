@@ -5,12 +5,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import br.hoteleveris.app.response.BaseResponse;
+
 @Entity
-public class Comodidade {
+public class Comodidade extends BaseResponse{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String descricao;
+	private String nome;
 	private Double valor;
 
 	public Long getId() {
@@ -21,12 +23,12 @@ public class Comodidade {
 		this.id = id;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public Double getValor() {

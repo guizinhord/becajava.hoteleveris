@@ -13,7 +13,7 @@ public class QuartoComodidade {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@ManyToOne
-	@JoinColumn(name = "quartoIdComodidade")
+	@JoinColumn(name = "quartoId")
 	private Quarto quartoComodidade;
 
 	@ManyToOne
