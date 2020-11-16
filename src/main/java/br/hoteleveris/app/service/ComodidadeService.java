@@ -9,6 +9,7 @@ import br.hoteleveris.app.model.Comodidade;
 import br.hoteleveris.app.repository.ComodidadeRepository;
 import br.hoteleveris.app.request.ComodidadeRequest;
 import br.hoteleveris.app.response.BaseResponse;
+import br.hoteleveris.app.response.ComodidadeResponse;
 
 @Service
 public class ComodidadeService {
@@ -21,7 +22,7 @@ public class ComodidadeService {
 		BaseResponse base = new BaseResponse();
 		base.statusCode = 400;
 
-		if (request.getNome() == "") {
+		if (request.getNome() == "" || request.getNome() == null) {
 			base.message = "Preencha o campo nome.";
 			return base;
 		}
@@ -33,20 +34,20 @@ public class ComodidadeService {
 		return base;
 	}
 
-	public Comodidade obter(Long id) {
+	public ComodidadeResponse obter(Long id) {
 		Optional<Comodidade> comodidade = repository.findById(id);
-		Comodidade response = new Comodidade();
-		BaseResponse base = new BaseResponse();
+		ComodidadeResponse response = new ComodidadeResponse();
+		
 
 		if (comodidade.isEmpty()) {
-			base.message = "Nao encontrado";
-			base.statusCode = 404;
+			response.message = "Nao encontrado";
+			response.statusCode = 404;
 		}
 		response.setId(comodidade.get().getId());
 		response.setNome(comodidade.get().getNome());
 
-		base.message = "Obtido com sucesso";
-		base.statusCode = 200;
+		response.message = "Obtido com sucesso";
+		response.statusCode = 200;
 		return response;
 
 	}

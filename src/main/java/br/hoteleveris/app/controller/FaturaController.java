@@ -17,10 +17,10 @@ public class FaturaController {
 	private FaturaService service;
 	
 	@PostMapping
-	public ResponseEntity inserir() {
+	public ResponseEntity<BaseResponse> inserir() {
 		try {
-			 service.inserir();
-			return ResponseEntity.status(200).body("Faturas realizadas.");
+			 BaseResponse response = service.inserir();
+			return ResponseEntity.status(response.statusCode).body(response);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new BaseResponse(500, "Erro server."));
 		}

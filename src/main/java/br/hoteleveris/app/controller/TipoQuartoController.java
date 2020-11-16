@@ -38,7 +38,7 @@ public class TipoQuartoController {
 	@GetMapping(path = "/{id}")
 	public ResponseEntity obter(@PathVariable Long id) {
 		try {
-			TipoQuarto response = service.obter(id);
+			TipoQuartoResponse response = service.obter(id);
 			return ResponseEntity.status(HttpStatus.OK).body(response);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new BaseResponse(500, "Erro nao esperado"));

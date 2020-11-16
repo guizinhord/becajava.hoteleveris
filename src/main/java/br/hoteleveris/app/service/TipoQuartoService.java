@@ -11,6 +11,7 @@ import br.hoteleveris.app.repository.TipoQuartoRepository;
 import br.hoteleveris.app.request.TipoQuartoRequest;
 import br.hoteleveris.app.response.BaseResponse;
 import br.hoteleveris.app.response.ListTipoQuarto;
+import br.hoteleveris.app.response.TipoQuartoResponse;
 
 @Service
 public class TipoQuartoService {
@@ -19,37 +20,43 @@ public class TipoQuartoService {
 
 	public BaseResponse inserir(TipoQuartoRequest request) {
 		TipoQuarto tipoQuarto = new TipoQuarto();
-		
-		if (request.getDescricao() == "") 
-			return new BaseResponse(400, "Erro usuario ");
-		
+
+		if (request.getDescricao() == "" || request.getDescricao() == null)
+			return new BaseResponse(400, "Erro usuario digite descricao. ");
+
 		if (request.getValor() <= 0) {
-			return new BaseResponse(400, "Erro usuario ");
+			return new BaseResponse(400, "Erro usuario digite valor. ");
 		}
 		tipoQuarto.setDescricao(request.getDescricao());
 		tipoQuarto.setValor(request.getValor());
 
 		repository.save(tipoQuarto);
-		
-		return new BaseResponse(200, "Tipo do quarto salvo.");
+
+		return new BaseResponse(201, "Tipo do quarto salvo.");
 	}
 
-	public TipoQuarto obter(Long id) {
+	public TipoQuartoResponse obter(Long id) {
 		Optional<TipoQuarto> tipoQuarto = repository.findById(id);
-		TipoQuarto response = new TipoQuarto();
-		BaseResponse base = new BaseResponse();
+		TipoQuartoResponse response = new TipoQuartoResponse();
+		
+		if (id <= 0) {
+			response.message = "id invalido";
+			response.statusCode = 404;
+			return response;
+		}
 
 		if (tipoQuarto.isEmpty()) {
-			base.message = "Nao encontrado";
-			base.statusCode = 404;
+			response.message = "Nao encontrado";
+			response.statusCode = 404;
+			return response;
 		}
 
 		response.setId(tipoQuarto.get().getId());
 		response.setDescricao(tipoQuarto.get().getDescricao());
 		response.setValor(tipoQuarto.get().getValor());
 
-		base.message = "Obtido com sucesso";
-		base.statusCode = 200;
+		response.message = "Obtido com sucesso";
+		response.statusCode = 200;
 		return response;
 	}
 
@@ -59,7 +66,7 @@ public class TipoQuartoService {
 
 		response.setTipoQuartos(lista);
 		response.statusCode = 200;
-		response.message = " Tipo de quartos obtidos com sucesso.";
+		response.message = "Tipo de quartos obtidos com sucesso.";
 		return response;
 	}
 

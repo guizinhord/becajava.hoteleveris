@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import br.hoteleveris.app.response.BaseResponse;
 
 @Entity
-public class Comodidade {
+public class Comodidade extends BaseResponse {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

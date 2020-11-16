@@ -17,29 +17,40 @@ public class FaturaService {
 	@Autowired
 	private OcupacaoRepository ocupacaoRepository;
 
-	private String hashContaHotel = "fc9b54e7-7d1b-4876-839e-983f73529d1f";
+	public BaseResponse inserir() {
 
-	public void inserir() {
+		BaseResponse response = new BaseResponse();
 		RestTemplate restTemplate = new RestTemplate();
-		String uri = "http://localhost:8081/operacao/transferencia";
+		String url = "http://localhost:8081/operacao/transferencia";
+		String hashContaHotel = "fc9b54e7-7d1b-4876-839e-983f73529d1f";
 
 		List<Ocupacao> lista = ocupacaoRepository.findBySituacao("N");
 
+		if (lista.isEmpty()) {
+			response.message = "Não Há nenhuma Ocupação em debito.";
+			response.statusCode = 400;
+			return response;
+
+		}
+
 		for (Ocupacao ocupacao : lista) {
-
 			double valor = ocupacao.getQuartoId().getTipoQuarto().getValor() * ocupacao.getQtdDiarias();
-			System.out.println(valor);
 
-			TransferenciaRequest trasferencia = new TransferenciaRequest();
-			trasferencia.setHashDestino(hashContaHotel);
-			trasferencia.setHashOrigem(ocupacao.getClienteId().getHashConta());
-			trasferencia.setValor(valor);
+			TransferenciaRequest transferenciaRequest = new TransferenciaRequest();
+			transferenciaRequest.setHashDestino(hashContaHotel);
+			transferenciaRequest.setHashOrigem(ocupacao.getClienteId().getHashConta());
+			transferenciaRequest.setValor(valor);
 
-			BaseResponse response = restTemplate.postForObject(uri, trasferencia, BaseResponse.class);
-			System.out.println(response);
+			restTemplate.postForObject(url, transferenciaRequest, BaseResponse.class);
 
 			ocupacao.setSituacao("P");
 			ocupacaoRepository.save(ocupacao);
+
 		}
+		response.statusCode = 200;
+		response.message = "Transferencia completa";
+
+		return response;
+
 	}
 }

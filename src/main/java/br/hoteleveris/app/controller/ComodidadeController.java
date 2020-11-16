@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.hoteleveris.app.model.Comodidade;
 import br.hoteleveris.app.request.ComodidadeRequest;
 import br.hoteleveris.app.response.BaseResponse;
+import br.hoteleveris.app.response.ComodidadeResponse;
 import br.hoteleveris.app.service.ComodidadeService;
 
 @RestController
@@ -35,7 +36,7 @@ public class ComodidadeController {
 	@GetMapping(path = "/{id}")
 	public ResponseEntity obter(@PathVariable Long id) {
 		try {
-			Comodidade response = service.obter(id);
+			ComodidadeResponse response = service.obter(id);
 			return ResponseEntity.status(HttpStatus.OK).body(response);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

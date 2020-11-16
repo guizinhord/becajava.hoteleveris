@@ -6,33 +6,32 @@ import br.hoteleveris.app.model.Cliente;
 import br.hoteleveris.app.model.Quarto;
 
 public class OcupacaoRequest {
-	private Cliente clienteId;
-	private Quarto quartoId;
-	private Double qtdDiarias;
+	private Long clienteId;
+	private Long quartoId;
+	private double qtdDiarias;
 	private String situacao;
-	
 
-	public Cliente getClienteId() {
+	public Long getClienteId() {
 		return clienteId;
 	}
 
-	public void setClienteId(Cliente clienteId) {
+	public void setClienteId(Long clienteId) {
 		this.clienteId = clienteId;
 	}
 
-	public Quarto getQuartoId() {
+	public Long getQuartoId() {
 		return quartoId;
 	}
 
-	public void setQuartoId(Quarto quartoId) {
+	public void setQuartoId(Long quartoId) {
 		this.quartoId = quartoId;
 	}
 
-	public Double getQtdDiarias() {
+	public double getQtdDiarias() {
 		return qtdDiarias;
 	}
 
-	public void setQtdDiarias(Double qtdDiarias) {
+	public void setQtdDiarias(double qtdDiarias) {
 		this.qtdDiarias = qtdDiarias;
 	}
 
@@ -43,6 +42,5 @@ public class OcupacaoRequest {
 	public void setSituacao(String situacao) {
 		this.situacao = situacao;
 	}
-
 
 }

@@ -2,7 +2,7 @@ package br.hoteleveris.app.request;
 
 public class TipoQuartoRequest {
 	private String descricao;
-	private Double valor;
+	private double valor;
 
 	public String getDescricao() {
 		return descricao;
@@ -12,11 +12,11 @@ public class TipoQuartoRequest {
 		this.descricao = descricao;
 	}
 
-	public Double getValor() {
+	public double getValor() {
 		return valor;
 	}
 
-	public void setValor(Double valor) {
+	public void setValor(double valor) {
 		this.valor = valor;
 	}
 

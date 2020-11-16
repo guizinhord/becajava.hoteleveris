@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.hoteleveris.app.model.Quarto;
+import br.hoteleveris.app.request.QuartoPatchRequest;
 import br.hoteleveris.app.request.QuartoRequest;
 import br.hoteleveris.app.response.BaseResponse;
 import br.hoteleveris.app.response.QuartoResponse;
@@ -45,7 +46,7 @@ public class QuartoController {
 	}
 
 	@PatchMapping(path = "/{id}")
-	public ResponseEntity atualizar(@RequestBody QuartoRequest request, @PathVariable Long id) {
+	public ResponseEntity atualizar(@RequestBody QuartoPatchRequest request, @PathVariable Long id) {
 		try {
 			BaseResponse response = service.atualizar(id, request);
 			return ResponseEntity.status(response.statusCode).body(response);

@@ -17,11 +17,11 @@ public class ClienteService {
 	private ClienteRepository repository;
 	
 	public BaseResponse inserir(ClienteRequest request) {
-		if(request.getNome() == "")
+		if(request.getNome() == "" || request.getNome() == null)
 			return new BaseResponse(404, "Preencha o campo nome");
-		if(request.getCpf() == "")
+		if(request.getCpf() == "" || request.getCpf() == null)
 			return new BaseResponse(404, "Preencha o campo cpf");
-		if(request.getHashConta() == "")
+		if(request.getHashConta() == "" || request.getHashConta() == null)
 			return new BaseResponse(404, "Preencha o campo hash");
 		
 		Cliente cliente = new Cliente(
@@ -50,4 +50,6 @@ public class ClienteService {
 		response.message = "Obtidos";
 		return response;
 	}
+
+	
 }
