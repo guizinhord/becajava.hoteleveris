@@ -8,12 +8,21 @@ import javax.persistence.Id;
 import br.hoteleveris.app.response.BaseResponse;
 
 @Entity
-public class TipoQuarto extends BaseResponse {
+public class TipoQuarto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String descricao;
 	private Double valor;
+
+	public TipoQuarto(Long id) {
+		super();
+		this.id = id;
+	}
+
+	public TipoQuarto() {
+
+	}
 
 	public Long getId() {
 		return id;

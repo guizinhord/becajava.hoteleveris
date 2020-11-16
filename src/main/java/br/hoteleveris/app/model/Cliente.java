@@ -14,6 +14,22 @@ public class Cliente {
 	private String cpf;
 	private String hashConta;
 
+	public Cliente(Long id) {
+		super();
+		this.id = id;
+	}
+
+	public Cliente(String nome, String cpf, String hashConta) {
+		super();
+		this.nome = nome;
+		this.cpf = cpf;
+		this.hashConta = hashConta;
+	}
+
+	public Cliente() {
+		super();
+	}
+
 	public Long getId() {
 		return id;
 	}

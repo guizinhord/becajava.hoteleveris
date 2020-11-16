@@ -19,41 +19,37 @@ public class TipoQuartoService {
 
 	public BaseResponse inserir(TipoQuartoRequest request) {
 		TipoQuarto tipoQuarto = new TipoQuarto();
-		BaseResponse base = new BaseResponse();
-		base.statusCode = 400;
-
-		if (request.getDescricao() == "") {
-			base.message = "Preencha o campo descricão.";
-			return base;
-		}
+		
+		if (request.getDescricao() == "") 
+			return new BaseResponse(400, "Erro usuario ");
+		
 		if (request.getValor() <= 0) {
-			base.message = "Preencha o campo valor.";
-			return base;
+			return new BaseResponse(400, "Erro usuario ");
 		}
 		tipoQuarto.setDescricao(request.getDescricao());
 		tipoQuarto.setValor(request.getValor());
 
 		repository.save(tipoQuarto);
-		base.message = "Tipo do quarto salvo.";
-		base.statusCode = 200;
-		return base;
+		
+		return new BaseResponse(200, "Tipo do quarto salvo.");
 	}
 
 	public TipoQuarto obter(Long id) {
 		Optional<TipoQuarto> tipoQuarto = repository.findById(id);
 		TipoQuarto response = new TipoQuarto();
+		BaseResponse base = new BaseResponse();
 
 		if (tipoQuarto.isEmpty()) {
-			response.message = "Nao encontrado";
-			response.statusCode = 404;
+			base.message = "Nao encontrado";
+			base.statusCode = 404;
 		}
 
 		response.setId(tipoQuarto.get().getId());
 		response.setDescricao(tipoQuarto.get().getDescricao());
 		response.setValor(tipoQuarto.get().getValor());
 
-		response.message = "Obtido com sucesso";
-		response.statusCode = 200;
+		base.message = "Obtido com sucesso";
+		base.statusCode = 200;
 		return response;
 	}
 

@@ -8,12 +8,20 @@ import javax.persistence.Id;
 import br.hoteleveris.app.response.BaseResponse;
 
 @Entity
-public class Comodidade extends BaseResponse{
+public class Comodidade {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
-	private Double valor;
+
+	public Comodidade(Long id) {
+		super();
+		this.id = id;
+	}
+
+	public Comodidade() {
+
+	}
 
 	public Long getId() {
 		return id;
@@ -29,14 +37,6 @@ public class Comodidade extends BaseResponse{
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public Double getValor() {
-		return valor;
-	}
-
-	public void setValor(Double valor) {
-		this.valor = valor;
 	}
 
 }

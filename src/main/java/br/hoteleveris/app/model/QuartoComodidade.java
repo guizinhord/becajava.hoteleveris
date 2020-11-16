@@ -14,18 +14,32 @@ public class QuartoComodidade {
 	private Long id;
 	@ManyToOne
 	@JoinColumn(name = "quartoId")
-	private Quarto quartoComodidade;
+	private Quarto quarto;
 
 	@ManyToOne
 	@JoinColumn(name = "comodidadeId")
 	private Comodidade comodidade;
 
-	public Quarto getQuartoComodidade() {
-		return quartoComodidade;
+	public QuartoComodidade(Quarto quarto, Comodidade comodidade) {
+		super();
+		this.quarto = quarto;
+		this.comodidade = comodidade;
 	}
 
-	public void setQuartoComodidade(Quarto quartoComodidade) {
-		this.quartoComodidade = quartoComodidade;
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Quarto getQuarto() {
+		return quarto;
+	}
+
+	public void setQuarto(Quarto quarto) {
+		this.quarto = quarto;
 	}
 
 	public Comodidade getComodidade() {

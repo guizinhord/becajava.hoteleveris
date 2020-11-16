@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.xml.crypto.Data;
 
 @Entity
 public class Ocupacao {
@@ -14,13 +15,26 @@ public class Ocupacao {
 	private Long id;
 	@ManyToOne
 	@JoinColumn(name = "clienteId")
-	private Cliente cliente;
+	private Cliente clienteId;
 	@ManyToOne
 	@JoinColumn(name = "quartoId")
-	private Quarto quarto;
+	private Quarto quartoId;
 
 	private Double qtdDiarias;
 	private String situacao;
+	// private Data data;
+
+	public Ocupacao(Cliente clienteId, Quarto quartoId, Double qtdDiarias, String situacao/* , Data data */) {
+		super();
+		this.clienteId = clienteId;
+		this.quartoId = quartoId;
+		this.qtdDiarias = qtdDiarias;
+		this.situacao = situacao;
+	}
+
+	public Ocupacao() {
+		super();
+	}
 
 	public Long getId() {
 		return id;
@@ -30,20 +44,20 @@ public class Ocupacao {
 		this.id = id;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
+	public Cliente getClienteId() {
+		return clienteId;
 	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setClienteId(Cliente clienteId) {
+		this.clienteId = clienteId;
 	}
 
-	public Quarto getQuarto() {
-		return quarto;
+	public Quarto getQuartoId() {
+		return quartoId;
 	}
 
-	public void setQuarto(Quarto quarto) {
-		this.quarto = quarto;
+	public void setQuartoId(Quarto quartoId) {
+		this.quartoId = quartoId;
 	}
 
 	public Double getQtdDiarias() {

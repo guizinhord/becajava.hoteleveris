@@ -29,24 +29,24 @@ public class ComodidadeService {
 
 		repository.save(comodidade);
 		base.message = "Comodidade salva.";
-		base.statusCode = 200;
+		base.statusCode = 201;
 		return base;
 	}
 
 	public Comodidade obter(Long id) {
 		Optional<Comodidade> comodidade = repository.findById(id);
 		Comodidade response = new Comodidade();
+		BaseResponse base = new BaseResponse();
 
 		if (comodidade.isEmpty()) {
-			response.message = "Nao encontrado";
-			response.statusCode = 404;
+			base.message = "Nao encontrado";
+			base.statusCode = 404;
 		}
 		response.setId(comodidade.get().getId());
 		response.setNome(comodidade.get().getNome());
-		response.setValor(comodidade.get().getValor());
 
-		response.message = "Obtido com sucesso";
-		response.statusCode = 200;
+		base.message = "Obtido com sucesso";
+		base.statusCode = 200;
 		return response;
 
 	}

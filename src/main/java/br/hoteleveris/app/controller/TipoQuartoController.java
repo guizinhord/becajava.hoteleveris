@@ -20,7 +20,7 @@ import io.swagger.models.Response;
 
 @RestController
 @RequestMapping("/tipoDeQuartos")
-public class TipoQuartoController extends BaseController {
+public class TipoQuartoController {
 	@Autowired
 	private TipoQuartoService service;
 
@@ -30,7 +30,8 @@ public class TipoQuartoController extends BaseController {
 			BaseResponse response = service.inserir(request);
 			return ResponseEntity.status(response.statusCode).body(response);
 		} catch (Exception e) {
-			return ResponseEntity.status(errorBase.statusCode).body(errorBase);
+			return ResponseEntity.status(new BaseResponse(500, "Erro nao esperado").statusCode)
+					.body(new BaseResponse(500, "Erro nao esperado"));
 		}
 	}
 
@@ -38,9 +39,9 @@ public class TipoQuartoController extends BaseController {
 	public ResponseEntity obter(@PathVariable Long id) {
 		try {
 			TipoQuarto response = service.obter(id);
-			return ResponseEntity.status(response.statusCode).body(response);
+			return ResponseEntity.status(HttpStatus.OK).body(response);
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Não encontrado!");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new BaseResponse(500, "Erro nao esperado"));
 		}
 	}
 
@@ -50,7 +51,8 @@ public class TipoQuartoController extends BaseController {
 			ListTipoQuarto contas = service.listar();
 			return ResponseEntity.status(contas.statusCode).body(contas);
 		} catch (Exception e) {
-			return ResponseEntity.status(errorBase.statusCode).body(errorBase);
+			return ResponseEntity.status(new BaseResponse(500, "Erro nao esperado").statusCode)
+					.body(new BaseResponse(500, "Erro nao esperado"));
 		}
 	}
 }

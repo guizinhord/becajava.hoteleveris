@@ -1,8 +1,9 @@
-package br.hoteleveris.app.request;
+package br.hoteleveris.app.response;
 
-public class ComodidadeRequest {
+public class ClienteResponse extends BaseResponse {
 	private Long id;
 	private String nome;
+	private String cpf;
 
 	public Long getId() {
 		return id;
@@ -18,6 +19,14 @@ public class ComodidadeRequest {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 }
