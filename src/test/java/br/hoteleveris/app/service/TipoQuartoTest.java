@@ -10,12 +10,13 @@ import br.hoteleveris.app.request.TipoQuartoRequest;
 import br.hoteleveris.app.response.BaseResponse;
 import br.hoteleveris.app.response.ListTipoQuarto;
 import br.hoteleveris.app.response.TipoQuartoResponse;
+import br.hoteleveris.app.service.imp.TipoQuartoServiceImp;
 
 @SpringBootTest
 public class TipoQuartoTest {
 
 	@Autowired
-	private TipoQuartoService service;
+	private TipoQuartoServiceImp service;
 
 	@Test
 	void inserir() throws Exception {

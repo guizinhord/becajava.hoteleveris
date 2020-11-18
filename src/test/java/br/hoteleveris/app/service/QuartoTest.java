@@ -16,11 +16,12 @@ import br.hoteleveris.app.request.QuartoPatchRequest;
 import br.hoteleveris.app.request.QuartoRequest;
 import br.hoteleveris.app.response.BaseResponse;
 import br.hoteleveris.app.response.QuartoResponse;
+import br.hoteleveris.app.service.imp.QuartoServiceImp;
 
 @SpringBootTest
 public class QuartoTest {
 	@Autowired
-	private QuartoService service;
+	private QuartoServiceImp service;
 
 	@Test
 	public void criar() {

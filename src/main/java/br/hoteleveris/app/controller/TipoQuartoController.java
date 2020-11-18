@@ -10,13 +10,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.hoteleveris.app.model.TipoQuarto;
 import br.hoteleveris.app.request.TipoQuartoRequest;
 import br.hoteleveris.app.response.BaseResponse;
 import br.hoteleveris.app.response.ListTipoQuarto;
 import br.hoteleveris.app.response.TipoQuartoResponse;
 import br.hoteleveris.app.service.TipoQuartoService;
-import io.swagger.models.Response;
 
 @RestController
 @RequestMapping("/tipoDeQuartos")

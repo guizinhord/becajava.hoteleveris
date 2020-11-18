@@ -14,13 +14,14 @@ import br.hoteleveris.app.request.ClienteRequest;
 import br.hoteleveris.app.response.BaseResponse;
 import br.hoteleveris.app.response.ClienteResponse;
 import br.hoteleveris.app.service.ClienteService;
+import br.hoteleveris.app.service.imp.ClienteServiceImp;
 
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {
 	@Autowired
 	private ClienteService service;
-	
+
 	@PostMapping
 	public ResponseEntity inserir(@RequestBody ClienteRequest request) {
 		try {
@@ -30,6 +31,7 @@ public class ClienteController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new BaseResponse(500, "Erro server."));
 		}
 	}
+
 	@GetMapping(path = "{id}")
 	public ResponseEntity obter(@PathVariable Long id) {
 		try {

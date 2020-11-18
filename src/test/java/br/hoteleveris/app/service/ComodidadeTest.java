@@ -9,12 +9,13 @@ import br.hoteleveris.app.model.Comodidade;
 import br.hoteleveris.app.request.ComodidadeRequest;
 import br.hoteleveris.app.response.BaseResponse;
 import br.hoteleveris.app.response.ComodidadeResponse;
+import br.hoteleveris.app.service.imp.ComodidadeServiceImp;
 
 @SpringBootTest
 public class ComodidadeTest {
 
 	@Autowired
-	private ComodidadeService service;
+	private ComodidadeServiceImp service;
 	
 	@Test
 	public void criar() {
